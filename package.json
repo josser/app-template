@@ -8,7 +8,8 @@
     "test:coverage": "nyc mocha",
     "build": "rimraf dist && tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon | pino-pretty"
+    "dev": "nodemon | pino-pretty",
+    "knex": "cross-env NODE_NO_WARNINGS=1 NODE_OPTIONS='--loader ts-node/esm' knex --knexfile ./src/knexfile.ts"
   },
   "author": "Dmitry Chirkin <dmitry.chirkin@gmail.com>",
   "license": "ISC",
@@ -18,10 +19,15 @@
   },
   "dependencies": {
     "@koa/router": "^10.1.1",
-    "dotenv": "^16.0.0",
+    "argon2": "^0.28.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
+    "knex": "^2.0.0",
     "koa": "^2.13.4",
     "koa-pino-logger": "^4.0.0",
-    "pino": "^7.10.0",
+    "objection": "^3.0.1",
+    "pg": "^8.7.3",
+    "pino": "^7.11.0",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.6.0"
   },
@@ -31,24 +37,27 @@
     "@types/koa__router": "^8.0.11",
     "@types/koa-pino-logger": "^3.0.1",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^16.11.27",
-    "@typescript-eslint/eslint-plugin": "^5.20.0",
-    "@typescript-eslint/parser": "^5.20.0",
+    "@types/node": "^16.11.36",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
     "chai": "^4.3.6",
-    "eslint": "^8.14.0",
-    "mocha": "^9.2.2",
-    "nodemon": "^2.0.15",
+    "eslint": "^8.15.0",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.16",
     "nyc": "^15.1.0",
     "pino-pretty": "^7.6.1",
     "rimraf": "^3.0.2",
     "ts-node": "^10.7.0",
-    "typescript": "^4.6.3"
+    "tsconfig-paths": "^4.0.0",
+    "typescript": "^4.6.4"
   },
   "nyc": {
     "extension": [
       ".ts"
     ],
-    "include": ["src"],
+    "include": [
+      "src"
+    ],
     "exclude": [
       "**/*.d.ts"
     ],

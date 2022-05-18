@@ -12,6 +12,7 @@
       "es2021"
     ],
     "rootDirs": ["src", "tests"],
+    "baseUrl": "./src",
     "outDir": "dist",
     "moduleResolution": "node",
     "module": "es2022",

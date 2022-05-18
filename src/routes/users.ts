@@ -8,7 +8,7 @@ const logger = container.resolve<Logger>("logger");
 const userService = container.resolve(UsersService);
 
 router.get('/', async (ctx) => {
-  userService.doSomething();
+  await userService.doSomething();
   logger.info("GET /users");
   // also
   ctx.log.info('Some message');
