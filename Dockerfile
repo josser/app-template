@@ -1,5 +1,5 @@
 FROM node:lts-alpine as proddeps
-USER node
+USER node:node
 
 WORKDIR /home/node/app
 
