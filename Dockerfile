@@ -6,6 +6,8 @@ WORKDIR /home/node/app
 COPY --chown=node ["package.json", "package-lock.json", "tsconfig.json", "./"]
 
 RUN npm set progress=false && npm config set depth 0
+RUN id
+RUN ls -la
 RUN npm install --only=production
 
 FROM proddeps as appbuild
