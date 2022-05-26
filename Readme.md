@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/josser/app-template/actions/workflows/docker-image.yml/badge.svg)](https://github.com/josser/app-template/actions/workflows/docker-image.yml)
+
 ### Docker build
 ```sh
 docker build -t josser/app-template  .
