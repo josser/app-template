@@ -1,16 +1,23 @@
 import { expect } from 'chai';
-import { hash, verify } from '../../src/lib/hash';
+import PasswordService from '../../src/services/password';
+import configStub from '../stub/config';
 
 describe('lib/hash helper', () => {
+  let service: PasswordService;
+
+  beforeEach(() => {
+    service = new PasswordService(configStub);
+  });
+
   it('Should hash a password', async () => {
     const password = 'password';
-    const hash_value = await hash(password, 'pepper', 'verysalt');
-    expect(hash_value).to.equal('$argon2id$v=19$m=37888,t=3,p=1$dmVyeXNhbHQ$/Pi1Q5aKC0I6as/pqy5vJxmmg6qv2uHfA28+AC9rKoY');
+    const hash_value = await service.hash(password, 'verysalt');
+    expect(hash_value).to.equal('$argon2id$v=19$m=37888,t=3,p=1$dmVyeXNhbHQ$OuRG5OI1pOynsyXTdurxpZ3KgerqPpy85sfIVE5fTos');
   });
 
   it('Should verify a password', async () => {
     const password = 'password';
-    const result = await verify(password, '$argon2id$v=19$m=37888,t=3,p=1$dmVyeXNhbHQ$/Pi1Q5aKC0I6as/pqy5vJxmmg6qv2uHfA28+AC9rKoY', 'pepper');
+    const result = await service.verify(password, '$argon2id$v=19$m=37888,t=3,p=1$dmVyeXNhbHQ$OuRG5OI1pOynsyXTdurxpZ3KgerqPpy85sfIVE5fTos');
     expect(result).to.equal(true);
   });
 })

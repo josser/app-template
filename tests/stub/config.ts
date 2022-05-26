@@ -1,22 +1,4 @@
-import dotenv from 'dotenv'
-import type { Knex } from 'knex';
-import { dirname } from './compat/esm.js';
-
-const __dirname = dirname(import.meta.url);
-
-dotenv.config({
-  path: `${__dirname}/../.env`
-});
-
-export interface AppConfig {
-  app: {
-    port: string | number,
-    passwords: {
-      pepper: string,
-    }
-  },
-  knex: Knex.Config
-}
+import { AppConfig } from "../../src/config";
 
 const config: AppConfig = {
   app: {
