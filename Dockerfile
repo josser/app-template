@@ -1,6 +1,7 @@
 FROM node:lts-alpine as proddeps
 USER node:node
 
+RUN mkdir /home/node/app
 WORKDIR /home/node/app
 
 COPY --chown=node ["package.json", "package-lock.json", "tsconfig.json", "./"]
