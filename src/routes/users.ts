@@ -2,6 +2,7 @@ import Router from "@koa/router";
 import { container } from "tsyringe";
 import type { Logger } from 'pino';
 import UsersService from "../services/users.js";
+import { userCreateSchema } from "../validate/users.js";
 
 const router = new Router({ prefix: "/users" });
 const logger = container.resolve<Logger>("logger");
@@ -15,6 +16,16 @@ router.get('/', async (ctx) => {
   ctx.body = {
     message: 'Hello World!'
   };
+});
+
+router.post('/', async (ctx) => {
+  const { error, value } = userCreateSchema.validate(ctx.request.body);
+  if (error) {
+    ctx.throw(error.message, 400);
+    return;
+  }
+  const created = await userService.create(value);
+  ctx.body = created;
 });
 
 export default router;

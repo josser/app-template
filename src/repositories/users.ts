@@ -6,4 +6,8 @@ export default class Users {
   findAll() {
     return UserModel.query();
   }
+
+  create(userDto: Partial<UserModel>) {
+    return UserModel.query().insert(userDto);
+  }
 }

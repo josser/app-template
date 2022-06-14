@@ -10,7 +10,6 @@
     "rootDirs": ["src", "tests"],
     "baseUrl": "./src",
     "outDir": "dist",
-    "moduleResolution": "node",
     // for tsyringe / decorators
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
