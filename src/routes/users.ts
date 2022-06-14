@@ -3,6 +3,7 @@ import { container } from "tsyringe";
 import type { Logger } from 'pino';
 import UsersService from "../services/users.js";
 import { userCreateSchema } from "../validate/users.js";
+import { ApiError } from "../lib/errors.js";
 
 const router = new Router({ prefix: "/users" });
 const logger = container.resolve<Logger>("logger");
@@ -21,7 +22,7 @@ router.get('/', async (ctx) => {
 router.post('/', async (ctx) => {
   const { error, value } = userCreateSchema.validate(ctx.request.body);
   if (error) {
-    ctx.throw(error.message, 400);
+    ctx.throw(new ApiError(error.message, 400));
     return;
   }
   const created = await userService.create(value);
