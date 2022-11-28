@@ -12,12 +12,12 @@ describe('lib/hash helper', () => {
   it('Should hash a password', async () => {
     const password = 'password';
     const hash_value = await service.hash(password, 'verysalt');
-    expect(hash_value).to.equal('$argon2id$v=19$m=37888,t=3,p=1$dmVyeXNhbHQ$OuRG5OI1pOynsyXTdurxpZ3KgerqPpy85sfIVE5fTos');
+    expect(hash_value).to.equal('$argon2id$v=19$m=37888,t=3,p=4$dmVyeXNhbHQ$++yePiL9ChZy1Z0gP6xIb08T3fT4M4c4XVqH/IIlQ8c');
   });
 
   it('Should verify a password', async () => {
     const password = 'password';
-    const result = await service.verify(password, '$argon2id$v=19$m=37888,t=3,p=1$dmVyeXNhbHQ$OuRG5OI1pOynsyXTdurxpZ3KgerqPpy85sfIVE5fTos');
+    const result = await service.verify(password, '$argon2id$v=19$m=37888,t=3,p=4$dmVyeXNhbHQ$++yePiL9ChZy1Z0gP6xIb08T3fT4M4c4XVqH/IIlQ8c');
     expect(result).to.equal(true);
   });
 })

@@ -2,7 +2,7 @@ import Koa from 'koa';
 import router from './routes/index.js';
 import pinoMiddleware from 'koa-pino-logger';
 import { container } from 'tsyringe';
-import koaBody from 'koa-body';
+import { koaBody } from 'koa-body';
 import { ApiError } from './lib/errors.js';
 import type pino from 'pino';
 
