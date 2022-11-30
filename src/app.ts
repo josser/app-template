@@ -1,4 +1,4 @@
-import Koa from 'koa';
+import Koa, { Middleware } from 'koa';
 import router from './routes/index.js';
 import pinoMiddleware from 'koa-pino-logger';
 import { container } from 'tsyringe';
@@ -7,11 +7,14 @@ import { ApiError } from './lib/errors.js';
 import type pino from 'pino';
 
 const app = new Koa();
+app.use(container.resolve('middleware.helmet') satisfies Middleware);
 app.use(koaBody());
 
 app.use(pinoMiddleware({
   logger: container.resolve('logger'),
 }));
+
+app.use(container.resolve('middleware.swagger') satisfies Middleware);
 
 app.use(async (ctx, next) => {
   try {

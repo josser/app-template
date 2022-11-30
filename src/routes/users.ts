@@ -9,6 +9,15 @@ const router = new Router({ prefix: "/users" });
 const logger = container.resolve<Logger>("logger");
 const userService = container.resolve(UsersService);
 
+/**
+ * @openapi
+ * /api/users:
+ *  get:
+ *    description: List of users
+ *    responses: 
+ *      200: 
+ *        description: Returns a mysterious string.
+ */
 router.get('/', async (ctx) => {
   await userService.doSomething();
   logger.info("GET /users");

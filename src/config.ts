@@ -9,6 +9,7 @@ dotenv.config({
 });
 
 export interface AppConfig {
+  env: string,
   app: {
     port: string | number,
     passwords: {
@@ -19,6 +20,7 @@ export interface AppConfig {
 }
 
 const config: AppConfig = {
+  env: process.env['NODE_ENV'] || 'production',
   app: {
     port: process.env['PORT'] || 3000,
     passwords: {
